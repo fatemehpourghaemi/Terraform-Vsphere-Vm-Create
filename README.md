@@ -64,6 +64,9 @@ To use this Terraform project, follow these steps:
 8. Monitor the Terraform output for any errors or warnings during the provisioning process.
 9. After the deployment is complete, you can use the virtual machines as intended.
 
+## New Feature 
+Added network configuration.
+
 ## Conclusion
 
 This documentation provides an overview of the Terraform project and its configuration files. It outlines the purpose of each file and the important settings to be considered. By following the provided usage instructions, you can effectively deploy and manage virtual machines in your vSphere environment using Terraform.

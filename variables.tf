@@ -97,3 +97,43 @@ variable "cpu_hot_add" {
   type = bool
   description = "Cpu hotplug "
 }
+
+variable "host_name" {
+  type = string
+  description = "The host name for the new created vm."
+}
+
+variable "time_zone" {
+  type = string
+  description = "The time zone to configure for the vm."
+}
+
+variable "domain" {
+  type = string
+  description = "The domain to be set for the VM."
+}
+
+variable "ipv4_address" {
+  type = string
+  description = "The IP address for the VM."
+}
+
+variable "ipv4_gateway" {
+  type = string
+  description = "The IP address of the gateway."
+}
+
+variable "ipv4_netmask" {
+  type = number
+  description = "The netmask for the VM."
+}
+
+variable "dns_servers" {
+  type = list(string)
+  description = "The list of DNS servers."
+}
+
+variable "dns_suffix_servers" {
+  type = list(string)
+  description = "A list of DNS search domains to add to the DNS configuration "
+}

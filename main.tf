@@ -11,9 +11,24 @@ resource "vsphere_virtual_machine" "vm" {
   memory           = var.memory
   guest_id         = var.vm_guest_id
   wait_for_guest_net_timeout = 30 
- 
+
   clone {
-    template_uuid = data.vsphere_virtual_machine.template.id    
+    template_uuid = data.vsphere_virtual_machine.template.id
+    customize {
+      linux_options {
+        host_name = var.host_name
+        domain    = var.domain
+        time_zone = var.time_zone
+      }
+      network_interface {
+        ipv4_address = var.ipv4_address
+        ipv4_netmask = var.ipv4_netmask
+        dns_server_list = var.dns_servers
+      }
+
+      dns_suffix_list = var.dns_suffix_servers
+      ipv4_gateway = var.ipv4_gateway
+    }
   }
 
   disk {
@@ -26,4 +41,12 @@ resource "vsphere_virtual_machine" "vm" {
   network_interface {
     network_id = data.vsphere_network.network.id
   }
+  
+  provisioner "remote-exec" {
+    inline = [
+      "sudo apt-get update",
+      "sudo apt-get upgeade",
+    ]
+  }
+
 }
