@@ -16,12 +16,13 @@ resource "vsphere_virtual_machine" "vm" {
     template_uuid = data.vsphere_virtual_machine.template.id
     customize {
       linux_options {
-        host_name = var.host_name
+        host_name = var.host_name[count.index]
         domain    = var.domain
         time_zone = var.time_zone
       }
+
       network_interface {
-        ipv4_address = var.ipv4_address
+        ipv4_address = var.ipv4_address_list[count.index]
         ipv4_netmask = var.ipv4_netmask
         dns_server_list = var.dns_servers
       }
@@ -32,21 +33,13 @@ resource "vsphere_virtual_machine" "vm" {
   }
 
   disk {
-    
     label            = "${var.vm_names[count.index]}-disk"
-    size             = var.disksize
-    thin_provisioned = var.thin
+    size             = var.disksize 
+    thin_provisioned = false # Set to false for thick provisioning (eager zero)
+    eagerly_scrub = false
   }
-
   network_interface {
     network_id = data.vsphere_network.network.id
   }
-  
-  provisioner "remote-exec" {
-    inline = [
-      "sudo apt-get update",
-      "sudo apt-get upgeade",
-    ]
-  }
-
 }
+

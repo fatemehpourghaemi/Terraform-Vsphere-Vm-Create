@@ -1,32 +1,34 @@
+
+# Lists
+
+variable "vm_names" {
+  description = "A list of names for the VMs"
+  type = list(string)  
+}
+
 variable "vsphere_user" {
-    description = "the user name you use in vCenter"
-    type = string
+  description = "the user name you use in vCenter"
+  type = string
 }
 
 variable "vsphere_password" {
-    description = "the passwod to access vCenter"
-    type = string
+  description = "the passwod to access vCenter"
+  type = string
 }
 
 variable "vsphere_server" {
-    description = "The server you're cennecting to use the API."
-    type = string
+  description = "The server you're cennecting to use the API."
+  type = string
 }
 
 variable "vm_count" {
-    description = "the amount of vms you want to create"
-    type = string
-}
-
-variable "vm_names" {
-    description = "A list of names for the vms"
-    type = list(string)  
-    default = ["vm-1", "vm-2", "vm-3"] # Add more names as needed
+  description = "the amount of vms you want to create"
+  type = string
 }
 
 variable "vsphere_resource_pool" {
-    type = string
-    description = "Reference ID of the resource pool to put this virtual machine in."
+  type = string
+  description = "Reference ID of the resource pool to put this virtual machine in."
 }
 
 variable "vsphere_datacenter" {
@@ -56,8 +58,8 @@ variable "memory" {
 }
 
 variable "disksize" {
-    type = string
-    description = "The disk size of the vm in GB."
+  type = string
+  description = "The disk size of the vm in GB."
   
 }
 
@@ -73,19 +75,14 @@ variable "vsphere_virtual_machine_template" {
 }
 
 variable "vm_guest_id" {
-    type = string
-    description = "The guest ID of the OS you are using."
-  
+  type = string
+  description = "The guest ID of the OS you are using."
 }
 
-variable "thin" {
-    type = bool
-    description = "Set to true in order to thin provisioning" 
-}
 
 variable "num_cores_per_socket" {
-    type = string
-    description = "The number of cores per socket"  
+  type = string
+  description = "The number of cores per socket"  
 }
 
 variable "memory_hot_add" {
@@ -99,7 +96,7 @@ variable "cpu_hot_add" {
 }
 
 variable "host_name" {
-  type = string
+  type = list(string)
   description = "The host name for the new created vm."
 }
 
@@ -113,9 +110,9 @@ variable "domain" {
   description = "The domain to be set for the VM."
 }
 
-variable "ipv4_address" {
-  type = string
-  description = "The IP address for the VM."
+variable "ipv4_address_list" {
+  type = list(string)
+  description = "The list IP address for the VM."
 }
 
 variable "ipv4_gateway" {
